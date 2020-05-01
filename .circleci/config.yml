@@ -1,7 +1,8 @@
 version: 2.1
 jobs:
   push:
-    machine: circleci/node:7.10
+    docker:
+     - image: alpine
     steps: 
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
       - run: docker tag $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME:latest registry.heroku.com/$HEROKU_APP_NAME/web
