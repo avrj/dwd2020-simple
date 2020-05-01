@@ -12,7 +12,7 @@ jobs:
 
 orbs:
   docker: circleci/docker@1.0.0
-  heroku: circleci/heroku@1.0.0
+  heroku: circleci/heroku@0.0.10
 workflows:
   deploy:
     jobs:
