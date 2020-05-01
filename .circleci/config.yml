@@ -2,7 +2,6 @@ version: 2.1
 jobs:
   push:
     machine: true
-    executor: heroku/default
     steps: 
       - heroku/install
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
