@@ -17,5 +17,5 @@ workflows:
       - docker/publish:
           image: avrj/dwd2020-simple
           tag: 'latest'
-      - deploy-to-heroku/docker-build-release:
+      - docker-build-release:
           app-name: dwd2020-simple
