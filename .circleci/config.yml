@@ -4,6 +4,7 @@ jobs:
     machine: true
     steps: 
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+      - run: docker pull avrj/dwd2020-simple:latest
       - run: docker tag avrj/dwd2020-simple:latest registry.heroku.com/$HEROKU_APP_NAME/web
       - run: docker push registry.heroku.com/$HEROKU_APP_NAME/web
 
