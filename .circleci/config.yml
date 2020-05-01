@@ -8,11 +8,11 @@ jobs:
       - run: docker pull avrj/dwd2020-simple:latest
       - run: docker tag avrj/dwd2020-simple:latest registry.heroku.com/$HEROKU_APP_NAME/web
       - run: docker push registry.heroku.com/$HEROKU_APP_NAME/web
-      - run: heroku container:release web --app $HEROKU_APP_NAME
+      # "heroku container:release" does not work with the official Heroku orb
 
 orbs:
   docker: circleci/docker@1.0.0
-  heroku: circleci/heroku@0.0.10
+  heroku: circleci/heroku@1.0.1
 workflows:
   deploy:
     jobs:
