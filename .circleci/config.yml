@@ -15,6 +15,6 @@ workflows:
       - docker/publish:
           image: avrj/dwd2020-simple
           tag: 'latest'
-      - push
+      - push:
           requires:
             - docker/publish
