@@ -15,6 +15,6 @@ workflows:
       - docker/publish:
           image: avrj/dwd2020-simple
           tag: 'latest'
-  heroku:
-    jobs:
       - push
+          requires:
+            - docker/publish
