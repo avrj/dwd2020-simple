@@ -4,7 +4,7 @@ jobs:
     machine: true
     steps: 
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
-      - run: docker tag $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME:latest registry.heroku.com/$HEROKU_APP_NAME/web
+      - run: docker tag avrj/dwd2020-simple:latest registry.heroku.com/$HEROKU_APP_NAME/web
       - run: docker push registry.heroku.com/$HEROKU_APP_NAME/web
 
 orbs:
@@ -13,6 +13,6 @@ workflows:
   deploy:
     jobs:
       - docker/publish:
-          image: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
+          image: avrj/dwd2020-simple
           tag: 'latest'
       - push
