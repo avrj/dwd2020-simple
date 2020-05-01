@@ -3,19 +3,22 @@ jobs:
   push:
     machine: true
     steps: 
+      - heroku/install
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
       - run: docker pull avrj/dwd2020-simple:latest
       - run: docker tag avrj/dwd2020-simple:latest registry.heroku.com/$HEROKU_APP_NAME/web
       - run: docker push registry.heroku.com/$HEROKU_APP_NAME/web
+      - run: heroku container:release web --app $HEROKU_APP_NAME
 
 orbs:
   docker: circleci/docker@1.0.0
-  deploy-to-heroku: betterdoc/deploy-to-heroku@4.1.0
+  heroku: circleci/heroku@1.0.0
 workflows:
   deploy:
     jobs:
       - docker/publish:
           image: avrj/dwd2020-simple
           tag: 'latest'
-      - deploy-to-heroku/docker-build-release:
-          app-name: dwd2020-simple
+      - push:
+          requires:
+            - docker/publish
